@@ -24,17 +24,17 @@ CH3_BASE_TESTS := ch3b_ $(CH2_BASE_TESTS)
 CH4_BASE_TESTS := $(CH2_BASE_TESTS) ch3b_yield # ch4b_
 CH5_BASE_TESTS := ch5b_ $(CH3_BASE_TESTS) usershell
 CH6_BASE_TESTS := ch6b_ $(CH5_BASE_TESTS) 
-CH7_BASE_TESTS := ch7b_ $(CH5_BASE_TESTS) 
-CH8_BASE_TESTS := ch8b_ $(CH6_BASE_TESTS) 
+CH7_BASE_TESTS := ch7b_ $(CH6_BASE_TESTS) 
+CH8_BASE_TESTS := ch8b_ $(CH7_BASE_TESTS) 
 
 
 CH2_TESTS := $(CH2_BASE_TESTS)
-CH3_TESTS := ch3b_ $(CH2_TESTS) ch3_
+CH3_TESTS := $(CH3_BASE_TESTS) ch3_
 CH4_TESTS := $(CH4_BASE_TESTS) ch4_ ch3b_sleep ch3_
 CH5_TESTS_BASE := ch5b_ $(CH4_TESTS) ch5_ ch5t_ usershell 
 CH5_SCHED_TEST := ch5t_
-CH6_TESTS := ch6b_ $(CH5_TESTS_BASE) ch6_
-CH7_TESTS := ch7b_ $(CH5_TESTS_BASE) ch7_
+CH6_TESTS := $(CH6_BASE_TESTS) ch6_ ch5_ ch4_
+CH7_TESTS := $(CH7_BASE_TESTS) ch7_
 CH8_TESTS := $(CH8_BASE_TESTS) ch8_
 
 BASE ?= 0
@@ -60,7 +60,7 @@ else ifeq ($(CHAPTER), 4)
 else ifeq ($(CHAPTER), 4_3)
 	CH_TESTS := $(CH4_BASE_TESTS) ch3b_sleep ch3_taskinfo
 else ifeq ($(CHAPTER), 4_only)
-	CH_TESTS := ch4_ ch4b_
+	CH_TESTS := ch4_
 else ifeq ($(CHAPTER), 5)
 	CH_TESTS := $(CH5_TESTS_BASE)
 else ifeq ($(CHAPTER), 5_only)
